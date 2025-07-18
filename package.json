@@ -1,0 +1,30 @@
+{
+  "name": "@boring-labs/loki-logger",
+  "version": "1.0.0",
+  "description": "Logger package for loki integration",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build" 
+  },
+  "author": "DaniR",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.0.14",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "pino": "^9.7.0",
+    "pino-loki": "^2.6.0",
+    "pino-pretty": "^13.0.0"
+  },
+  "files": [
+    "dist" 
+  ],
+  "publishConfig": {
+    "access": "public", 
+    "registry": "https://npm.pkg.github.com/" 
+  }
+}

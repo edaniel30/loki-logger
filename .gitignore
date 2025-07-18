@@ -1,0 +1,24 @@
+# Directorios de dependencias
+node_modules/
+dist/ # Carpeta de salida de la compilación de TypeScript
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de caché
+.npm/
+.yarn/
+.pnpm-store/
+
+# Archivos de configuración de IDEs (opcional, pero común)
+.vscode/ 
+
+# Archivos de sistema operativo
+.DS_Store 
+Thumbs.db 
+
+# Archivos de entorno
+.env
