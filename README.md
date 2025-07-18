@@ -70,8 +70,6 @@ processUser('user-456');
 logger.warn('Application running in development mode.');
 ```
 
-## Configuration Options
-
 ## ⚙️ Advanced Usage
 ### Custom Transports
 You can implement your own transport by extending the base transport interface.
