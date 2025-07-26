@@ -49,9 +49,9 @@ export function createLogger(options?: SharedLoggerOptions) {
   };
 
   if (finalOptions.isProduction) {
-    transportTargets.push(lokiTransportConfig); 
+    transportTargets.push(lokiTransportConfig, consoleTransportConfig); 
   } else {
-    transportTargets.push(consoleTransportConfig, lokiTransportConfig); 
+    transportTargets.push(consoleTransportConfig); 
   }
 
   const logger: pino.Logger = pino(
