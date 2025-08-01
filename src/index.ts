@@ -7,6 +7,8 @@ const defaultOptions: Required<SharedLoggerOptions> = {
   appName: process.env.APP_NAME || 'default-app',
   serviceName: process.env.SERVICE_NAME || 'default-service',
   logLevel: (process.env.LOG_LEVEL as pino.Level) || 'debug', 
+  lokiUsername: process.env.LOKI_USERNAME || '',
+  lokiPassword: process.env.LOKI_PASSWORD || '',
 };
 
 /**
@@ -19,12 +21,17 @@ export function createLogger(options?: SharedLoggerOptions) {
 
   const transportTargets: any[] = [];
 
-  const lokiTransportConfig: any = {
+  const headers = finalOptions.lokiUsername && finalOptions.lokiPassword ? {
+    Authorization: 'Basic ' + Buffer.from(`${finalOptions.lokiUsername}:${finalOptions.lokiPassword}`).toString('base64'),
+  } : {};
+
+  const lokiTransportConfig: pino.TransportSingleOptions = {
     target: 'pino-loki',
     options: {
       batching: true,
       interval: 5,
       host: finalOptions.lokiHost, 
+      headers,
       labels: {
         app: finalOptions.appName,       
         environment: finalOptions.isProduction ? 'production' : 'development',
@@ -38,7 +45,7 @@ export function createLogger(options?: SharedLoggerOptions) {
     }
   };
 
-  const consoleTransportConfig: any = {
+  const consoleTransportConfig: pino.TransportSingleOptions = {
     target: 'pino-pretty',
     options: {
       colorize: true,
