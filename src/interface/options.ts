@@ -6,5 +6,7 @@ export interface SharedLoggerOptions {
     appName?: string;       
     serviceName?: string;   
     logLevel?: pino.Level;  
+    lokiUsername?: string;
+    lokiPassword?: string;
   }
   

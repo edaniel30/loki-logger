@@ -1,13 +1,13 @@
 {
   "name": "@edaniel30/loki-logger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Logger package for loki integration",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build" 
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^24.0.14",
@@ -19,13 +19,13 @@
     "pino-pretty": "^13.0.0"
   },
   "files": [
-    "dist" 
+    "dist"
   ],
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com/"
   },
-  "repository": { 
+  "repository": {
     "type": "git",
     "url": "https://github.com/edaniel30/loki-logger.git"
   },
