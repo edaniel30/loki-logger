@@ -1,6 +1,6 @@
 # Directorios de dependencias
 node_modules/
-dist/ # Carpeta de salida de la compilación de TypeScript
+dist/
 
 # Logs
 *.log
