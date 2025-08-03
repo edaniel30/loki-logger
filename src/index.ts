@@ -2,7 +2,7 @@ import pino from 'pino';
 import { SharedLoggerOptions } from './interface/options';
 
 const defaultOptions: Required<SharedLoggerOptions> = {
-  isProduction: process.env.NODE_ENV === 'production',
+  scope: process.env.SCOPE || 'default-scope',
   lokiHost: process.env.LOKI_HOST || 'http://localhost:3100', 
   appName: process.env.APP_NAME || 'default-app',
   serviceName: process.env.SERVICE_NAME || 'default-service',
@@ -13,8 +13,8 @@ const defaultOptions: Required<SharedLoggerOptions> = {
 
 /**
  * Create and configure a Pino logger instance.
- * @param options Opciones para personalizar el logger.
- * @returns Una instancia de Pino logger.
+ * @param options Options to customize the logger.
+ * @returns A Pino logger instance.
  */
 export function createLogger(options?: SharedLoggerOptions) {
   const finalOptions = { ...defaultOptions, ...options };
@@ -34,7 +34,7 @@ export function createLogger(options?: SharedLoggerOptions) {
       headers,
       labels: {
         app: finalOptions.appName,       
-        environment: finalOptions.isProduction ? 'production' : 'development',
+        environment: finalOptions.scope,
         service: finalOptions.serviceName, 
         source: 'app-pino',
       },
@@ -55,7 +55,7 @@ export function createLogger(options?: SharedLoggerOptions) {
     }
   };
 
-  if (finalOptions.isProduction) {
+  if (finalOptions.scope === 'production' || finalOptions.scope === 'staging') {
     transportTargets.push(lokiTransportConfig, consoleTransportConfig); 
   } else {
     transportTargets.push(consoleTransportConfig); 
